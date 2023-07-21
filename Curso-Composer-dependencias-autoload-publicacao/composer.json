@@ -4,7 +4,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Alecsanderdias\\BuscadorCursos\\": "src/"
+            "Alura\\BuscadorDeCursos\\": "src/"
         }
     },
     "authors": [
@@ -13,5 +13,30 @@
             "email": "alecsanderdias@hotmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^7.7",
+        "symfony/dom-crawler": "^4.2",
+        "symfony/css-selector": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.2",
+        "squizlabs/php_codesniffer": "^3.7",
+        "phan/phan": "^5.4"
+    },
+    "scripts": {
+        "phan": "phan --allow-polyfill-parser src\\Buscador.php",
+        "test": "phpunit .\\tests\\TestBuscadorDeCursos.php",
+        "cs": "phpcs --standard=PSR12 src\\Buscador.php",
+        "check": [
+            "@phan",
+            "@test",
+            "@cs"
+        ],
+        "post-update-cmd": [
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "check": "Validação dos scripts PHAN, TEST e CS"
+    }
 }
